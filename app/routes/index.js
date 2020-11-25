@@ -1,5 +1,5 @@
 module.exports = function(application){
-    application.get('/', function(req, res){
-        res.send('Teste');
+    application.get('/chat', function(req, res){
+        res.render('index.ejs');
     })
 }
