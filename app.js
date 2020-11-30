@@ -2,6 +2,8 @@
 var app = require('./config/server');
 
 //parametrizar a porta de escuta
-app.listen(8888, function(){
+var server = app.listen(8888, function(){
         console.log('Server ON');
     });
+
+require('socket.io').listen(server);
