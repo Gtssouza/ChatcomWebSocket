@@ -1,3 +1,5 @@
+const { emit } = require("../../config/server");
+
 module.exports.initChat = function(application, req, res){
     var dadosForm = req.body;
     
@@ -10,5 +12,8 @@ module.exports.initChat = function(application, req, res){
         res.render('index.ejs', {validacao :erros});
         return;
     }
+    //recebendo a variavel io do app.js
+    application.get('io').emit('msgParaClientes', {apelido: dadosForm.apelido, mensagem:' acabou de entrar'});
+
     res.render('chat.ejs');
 }
