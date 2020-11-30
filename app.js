@@ -40,5 +40,17 @@ io.on('connection', function(socket){
 
     socket.on('disconnect', function(){
         console.log('Usuario desconectado');
-    })
+    });
+
+    socket.on('msgParaServidor', function(data){
+        socket.emit('msgParaClientes',
+        {
+            apelido: data.apelido, mensagem: data.mensagem
+        });
+
+        socket.broadcast.emit('msgParaClientes',
+        {
+            apelido: data.apelido, mensagem: data.mensagem
+        });
+    });
 });
