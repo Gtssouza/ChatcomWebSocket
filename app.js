@@ -11,4 +11,8 @@ var io = require('socket.io').listen(server);
 /* Criar a conexao por websocket */
 io.on('connection', function(socket){
     console.log('Usuario conectou');
+
+    socket.on('disconnect', function(){
+        console.log('Usuario desconectado');
+    })
 });
