@@ -43,6 +43,7 @@ io.on('connection', function(socket){
     });
 
     socket.on('msgParaServidor', function(data){
+        //dialogo
         socket.emit('msgParaClientes',
         {
             apelido: data.apelido, mensagem: data.mensagem
@@ -52,5 +53,18 @@ io.on('connection', function(socket){
         {
             apelido: data.apelido, mensagem: data.mensagem
         });
+
+        //participantes
+        if(parseInt(data.apelido_atualizado_nos_clientes) == 0){
+            socket.emit('particpantesParaClientes',
+            {
+                apelido: data.apelido
+            });
+
+            socket.broadcast.emit('particpantesParaClientes',
+            {
+                apelido: data.apelido
+            });
+        }
     });
 });
